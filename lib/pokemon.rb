@@ -10,8 +10,16 @@ def initialize(id:, name:, type:, db:)
 end
 
 def self.save(name, type, db)
-db.execute("INSERT INTO pokemon(name, type) VALUES (?,?)", name, type)
+sql = <<-SQL 
+INSERT INTO pokemon (name, type)
+VALUES (?, ?)
+SQL
+
+db.execute(sql, self.name, self.album)
 end
+  
+# db.execute("INSERT INTO pokemon(name, type) VALUES (?,?)", name, type)
+# end
 
 def self.find(id, db)
 pokemon_by_id = db.execute("SELECT * FROM pokemon WHERE id=?", id).flatten
