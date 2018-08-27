@@ -10,14 +10,14 @@ def initialize(id:, name:, type:, db:)
 end
 
 def self.save(name, type, db)
-sql = <<-SQL 
+sql = <<-SQL
 INSERT INTO pokemon (name, type)
 VALUES (?, ?)
 SQL
 
-db.execute(sql, self.name, self.album)
+db.execute(sql, self.name, self.type)
 end
-  
+
 # db.execute("INSERT INTO pokemon(name, type) VALUES (?,?)", name, type)
 # end
 
